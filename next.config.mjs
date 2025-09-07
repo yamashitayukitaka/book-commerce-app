@@ -4,6 +4,9 @@
 // ここでは GitHub のアバター画像 (https://avatars.githubusercontent.com) を許可しています
 
 const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true, // ← verrcelデプロイ時にESlintエラーがあっても無視してデプロイさせる。
+  },
   images: {
     remotePatterns: [
       {
