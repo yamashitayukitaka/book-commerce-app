@@ -38,7 +38,7 @@ const PurchaseSuccess = () => {
     fetchData();
     // async関数は定義しただけでは実行されないので、fetchData()を呼び出す必要がある
     // ----------------------------------------------
-  }, []); // ← useEffect の依存配列はここで閉じる
+  }, [sessionId]); // ← useEffect の依存配列はここで閉じる
 
 
   return (
