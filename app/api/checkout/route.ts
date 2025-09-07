@@ -9,7 +9,7 @@ function stripHtml(html: string): string {
   return html.replace(/<[^>]*>?/gm, "");
 }
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
 
   const { title, price, bookId, userId } = await request.json();
 

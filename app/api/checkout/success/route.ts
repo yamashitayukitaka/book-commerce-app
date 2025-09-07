@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   // RequestはTypeScriptが用意しているRequestオブジェクトの型定義であり、requestにはRequestオブジェクトが入る
 
   const { sessionId } = await request.json();
