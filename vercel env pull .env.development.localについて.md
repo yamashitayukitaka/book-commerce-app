@@ -1,0 +1,1 @@
+vercel env pull .env.development.local はデータベースの情報とそれ以外のvercelに関するすべての環境変数の情報を記述したファイルをローカルに生成させるためのコマンド
