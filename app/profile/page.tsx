@@ -16,7 +16,7 @@ export default async function ProfilePage() {
   let purchaseDetailBooks: BookType[] = [];
 
   if (user) {
-    const response = await fetch(`/app/api/purchases/${user.id}`, {
+    const response = await fetch(`/api/purchases/${user.id}`, {
       // GET のときは method を書かなくても大丈夫
       // fetch() のデフォルトメソッドは GET
       cache: 'no-store' // SSR
