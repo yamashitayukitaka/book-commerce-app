@@ -30,6 +30,14 @@ const PurchaseSuccess = () => {
           // console.log(await res.json());
           const data = await res.json();
           setBookUrl(data.purchase.bookId);
+
+          // 購入完了後、他のページのキャッシュをクリアするため少し待つ
+          setTimeout(() => {
+            // ページ遷移時にキャッシュを強制的にリフレッシュ
+            if (typeof window !== 'undefined') {
+              window.dispatchEvent(new Event('purchase-completed'));
+            }
+          }, 1000);
         } catch (err) {
           console.error(err);
         }

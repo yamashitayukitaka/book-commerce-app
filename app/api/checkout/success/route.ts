@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 // ✅このファイルの役割
 // Stripe自体は 決済の処理や請求情報の管理 は行いますが、ユーザー向けに「購入履歴ページ」を自動生成してくれるわけではない。
 // そのため、購入情報を別にデータベースにPOSTしてから、改めてデータベースからGETしてクライアントサイドに表示させる必要がある。
@@ -70,6 +71,10 @@ export async function POST(request: Request) {
           bookId: session.metadata?.bookId!,
         },
       });
+
+      revalidatePath('/');
+      revalidatePath('/profile');
+
       return NextResponse.json({ purchase });
     } else {
       return NextResponse.json({ message: 'すでに購入済みです' });
