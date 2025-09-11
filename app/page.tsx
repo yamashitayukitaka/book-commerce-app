@@ -41,7 +41,7 @@ export default async function Home() {
     const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/purchases/${user.id}`, {
       // GET のときは method を書かなくても大丈夫
       // fetch() のデフォルトメソッドは GET
-      cache: 'no-store', // SSR
+      // cache: 'no-store', // SSR
       next: { revalidate: 0 } // Vercel環境でのキャッシュを確実に無効化
     });
 
