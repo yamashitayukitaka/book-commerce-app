@@ -23,6 +23,10 @@ export const getAllBook = async () => {
   const allbooks = await client.getList<BookType>({
     // getListはmicrocms独自のcrud関数
     endpoint: 'bookcommerce',
+    customRequestInit: {
+      cache: "no-store",
+      // SSRに
+    },
   });
   return allbooks;
 };
@@ -34,6 +38,10 @@ export const getDetailBooks = async (contentId: string) => {
     // contentId を渡すことで、MicroCMS の特定のエンドポイントから個別データを取得できます。
     endpoint: 'bookcommerce',
     contentId,
+    customRequestInit: {
+      cache: "no-store",
+      // SSRに
+    },
   });
   return detailBook;
 };
