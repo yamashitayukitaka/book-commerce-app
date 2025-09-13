@@ -62,6 +62,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   purchases     Purchase[]
+  comments      Comment[]
 }
 
 model VerificationToken {
@@ -75,9 +76,25 @@ model VerificationToken {
 // ------------------------------------------------------------------------------------
 // ユーザーの購入履歴に関わるモデル。
 model Purchase {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   userId    String
   bookId    String
+  createdAt DateTime  @default(now())
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments  Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
   createdAt DateTime @default(now())
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // -----------------------------
+  // User情報との紐付け
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // 商品情報（PurchaseやBookなど）との紐付け
+  purchaseId String
+  purchase   Purchase @relation(fields: [purchaseId], references: [id], onDelete: Cascade)
 }
