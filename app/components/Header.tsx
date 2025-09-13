@@ -1,15 +1,14 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { User } from "../types/types";
-import { signOut } from "next-auth/react";
-import { getServerSession } from "next-auth";
-import { nextAuthOptions } from "../lib/next-auth/options";
+import { signOut, useSession } from "next-auth/react";
 // User型をインポート
 
-const Header = async () => {
+const Header = () => {
   // ------------------
-  // const { data: session } = useSession();
+  const { data: session } = useSession();
   // useSession() が返すオブジェクトの中から data プロパティだけを取り出して
   // それを session という名前の変数 に代入しています。
 
@@ -21,15 +20,15 @@ const Header = async () => {
 
   // console.log(session);
 
-  // const user = session?.user as User;
+  const user = session?.user as User;
 
   // ✅ヘッダーアイコン画像の表示が遅いので、useSession()ではなく
   // getServerSession()を使ってサーバーサイドでセッション情報を取得するように変更
   // これにより、ヘッダーアイコン画像の表示が速くなる
   // ------------------
-  const session = await getServerSession(nextAuthOptions)
+  // const session = await getServerSession(nextAuthOptions)
   // これは現在NextAuthでログインしている人のユーザー情報（セッション情報）を取得している
-  const user = session?.user as User;
+  // const user = session?.user as User;
   // ------------------
 
 
