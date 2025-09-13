@@ -4,10 +4,18 @@
 // 注意点としてpage.tsx内でidを扱う為にはparamsでidを受け取る必要がある
 
 import { getDetailBooks } from "@/app/lib/microcms/client";
+import CheckoutButton from "@/app/components/CheckoutButton"; // クライアントコンポーネント
 import Image from "next/image";
 import React from "react";
+import { getServerSession } from "next-auth";
+import { nextAuthOptions } from "@/app/lib/next-auth/options";
+import { User } from "@/app/types/types";
 
 const DetailBook = async ({ params }: { params: { id: string } }) => {
+  const session = await getServerSession(nextAuthOptions)
+  // これは現在NextAuthでログインしている人のユーザー情報（セッション情報）を取得している
+  const user = session?.user as User;
+  console.log(session);
   const book = await getDetailBooks(params.id)
   console.log(book);
   return (
@@ -26,7 +34,7 @@ const DetailBook = async ({ params }: { params: { id: string } }) => {
             className="text-gray-700 mt-2"
             dangerouslySetInnerHTML={{ __html: book.content }}
           />
-
+          <CheckoutButton bookId={book.id} title={book.title} price={book.price} userId={user?.id} />
           <div className="flex justify-between items-center mt-2">
             <span className="text-sm text-gray-500">公開日:{new Date(book.publishedAt).toLocaleDateString()}</span>
             <span className="text-sm text-gray-500">最終更新:{new Date(book.updatedAt).toLocaleDateString()}</span>
