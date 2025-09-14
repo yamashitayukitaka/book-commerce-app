@@ -14,11 +14,11 @@ interface CheckoutButtonProps {
   title: string;
   price: number;
   userId?: string;
+  isPurchased?: boolean;
 }
 
-const CheckoutButton = ({ bookId, title, price, userId }: CheckoutButtonProps) => {
+const CheckoutButton = ({ bookId, title, price, userId, isPurchased }: CheckoutButtonProps) => {
   const router = useRouter();
-
   const startCheckout = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
@@ -33,7 +33,23 @@ const CheckoutButton = ({ bookId, title, price, userId }: CheckoutButtonProps) =
     }
   };
 
-  return <button onClick={startCheckout}>購入する</button>;
+  const handleAlreadyPurchased = () => {
+    alert("この商品はすでに購入済みです。");
+  }
+
+  const handleClickControl = () => {
+    if (!userId) {
+      router.push('/login');
+      return;
+    }
+    if (isPurchased) {
+      handleAlreadyPurchased();
+    } else {
+      startCheckout();
+    }
+  };
+
+  return <button onClick={handleClickControl}> 購入する</button >;
 };
 
 export default CheckoutButton;
