@@ -2,21 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
-export async function main() {
-  try {
-    await prisma.$connect();
-    // prisma.$connect()はDBとの接続を確立するためのメソッドです。
-    // GETの場合は不要の場合があるが、POSTやPUTなどのデータを変更する操作を行う場合には、接続を確立しておく必要があります。
-    // $connect() は 非同期メソッド であり、Prisma が内部で Promise を返すように作られています。
-    // だから await が使えるのです。
-  } catch (err) {
-    return Error('DB接続に失敗しました')
-  }
-}
-
 export const GET = async (req: Request, { params }: { params: { productId: string } }) => {
   try {
-    await main();
+    await prisma.$connect();
     const { productId } = params;
     console.log("productId:", productId); // productIdが正しく取得できているか確認するためのログ
     const post = await prisma.comment.findMany({ where: { productId: productId } });
@@ -33,7 +21,7 @@ export const GET = async (req: Request, { params }: { params: { productId: strin
 
 export const POST = async (req: Request, { params }: { params: { productId: string } }) => {
   try {
-    await main();
+    await prisma.$connect();
     const body = await req.json();
     const { content } = body;
     const { productId } = params;
