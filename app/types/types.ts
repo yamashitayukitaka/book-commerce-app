@@ -28,4 +28,17 @@ type Purchase = {
   user: User;
 }
 
-export type { BookType, User, Purchase };
+type Task = {
+  id: string;
+  text: string;
+}
+
+type Comment = {
+  id: string;
+  content: string;
+  createdAt: Date;
+  userId?: string;          // ? はオプショナル
+  user?: User | null;       // User 型は別で定義しておく必要あり
+  productId?: string;
+}
+export type { BookType, User, Purchase, Task, Comment };
