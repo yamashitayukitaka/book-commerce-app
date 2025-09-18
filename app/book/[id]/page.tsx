@@ -11,6 +11,8 @@ import { getServerSession } from "next-auth";
 import { nextAuthOptions } from "@/app/lib/next-auth/options";
 import { User } from "@/app/types/types";
 import { Purchase } from "@/app/types/types";
+import CommentCreate from "@/app/components/Comments";
+
 
 const DetailBook = async ({ params }: { params: { id: string } }) => {
   const session = await getServerSession(nextAuthOptions)
@@ -56,6 +58,7 @@ const DetailBook = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </div>
+      <CommentCreate params={params} />
     </div>
   );
 };
