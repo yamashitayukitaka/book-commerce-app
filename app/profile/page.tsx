@@ -6,6 +6,7 @@ import { getDetailBooks } from "../lib/microcms/client";
 import PurchaseDetailBook from "../components/PurchaseDetailBook";
 
 
+
 export default async function ProfilePage() {
 
   const session = await getServerSession(nextAuthOptions)
