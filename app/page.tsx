@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBook } from "./lib/microcms/client";
 import { BookType, User, Purchase } from "./types/types";
-import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import { nextAuthOptions } from "@/app/lib/next-auth/options";
 import Image from "next/image";
 import { redHat } from "@/app/font/font";
 
