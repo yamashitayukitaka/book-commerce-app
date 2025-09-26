@@ -38,7 +38,7 @@ type Comment = {
   content: string;
   createdAt: Date;
   userId?: string;          // ? はオプショナル
-  user?: User | null;       // User 型は別で定義しておく必要あり
+  userName?: string | null;
   productId?: string;
 }
 export type { BookType, User, Purchase, Task, Comment };

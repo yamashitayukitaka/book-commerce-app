@@ -4,8 +4,9 @@ import { getServerSession } from "next-auth";
 import Book from "./components/Book";
 import { getAllBook } from "./lib/microcms/client";
 import { BookType, User, Purchase } from "./types/types";
-import { nextAuthOptions } from "./lib/next-auth/options";
-
+import { nextAuthOptions } from "@/app/api/auth/[...nextauth]/route";
+import Image from "next/image";
+import { redHat } from "@/app/font/font";
 
 export default async function Home() {
 
@@ -54,22 +55,36 @@ export default async function Home() {
 
     purchasedBookIds = purchasesData.map((purchaseBook: Purchase) => purchaseBook.bookId);
   }
-
   return (
     <>
-      <main className="flex flex-wrap justify-center items-center md:mt-32 mt-20">
-        <h2 className="text-center w-full font-bold text-3xl mb-2">
-          Book Commerce
-        </h2>
-        {contents.map((book: BookType) => (
-          <Book
-            key={book.id}
-            book={book}
-            isPurchased={purchasedBookIds.includes(book.id)
-              // includesメソッドは、配列が指定された値を含んでいるかどうかをチェックし、含んでいればtrue、含んでいなければfalseを返します。
-            }
+      <main>
+        <div className="relative h-screen overflow-hidden mb-[48px]">
+          <Image
+            src="/hero/img01.jpg"
+            alt="カバー画像"
+            width={1920}        // 画像の元サイズに合わせて大きめに設定
+            height={700}
+            sizes="100vw"         // 親要素にフィット
+            className="object-cover"
           />
-        ))}
+          <p className={`${redHat.className} text-xl text-[#fff] absolute top-[30%] left-[50px] font-bold text-[64px] tracking-[3.2px]`}>
+            THE AREA OF DIVERSITY IS COMING.
+          </p>
+        </div>
+        <h2 className={`${redHat.className} text-center tracking-[2px] text-[40px] mb-[40px]`}>
+          COLLECTION
+        </h2>
+        <div className="flex flex-wrap w-[1400px] m-auto gap-[10px] mb-[100px]">
+          {contents.map((book: BookType) => (
+            <Book
+              key={book.id}
+              book={book}
+              isPurchased={purchasedBookIds.includes(book.id)
+                // includesメソッドは、配列が指定された値を含んでいるかどうかをチェックし、含んでいればtrue、含んでいなければfalseを返します。
+              }
+            />
+          ))}
+        </div>
       </main>
     </>
   );
