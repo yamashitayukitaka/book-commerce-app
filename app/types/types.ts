@@ -18,6 +18,7 @@ type User = {
   email?: string | null | undefined;
   image?: string | null | undefined;
   id: string;
+  hashedPassword?: string | null;
 }
 
 type Purchase = {
