@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
-import { NextAuthProvider } from "./lib/next-auth/provider";
+// import { NextAuthProvider } from "./lib/next-auth/provider";
+
 import { Suspense } from "react";
 import Loading from "./loading";
+import { SessionProvider } from "next-auth/react";
 
 const notSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: "400" });
 
@@ -24,15 +26,15 @@ export default function RootLayout({
         className={`${notSansJP.className}`}
       >
 
-        {/* <SessionProvider> */}
-        <NextAuthProvider>
+        <SessionProvider>
+          {/* <NextAuthProvider> */}
           {/* useSession ()を使う為には、useSession() を使うコンポーネントが <SessionProvider> で囲まれていないといけない */}
           {/* {children}は各フォルダ名/page.tsx のpage,tsxが入るので各ページでuseSession()を使える */}
           {/* SessionProviderはクライアントコンポーネントでしか使えないので、注意が必要 */}
           <Header />
           <Suspense fallback={<Loading />}>{children}</Suspense>
-        </NextAuthProvider>
-        {/* </SessionProvider> */}
+          {/* </NextAuthProvider> */}
+        </SessionProvider>
 
       </body>
     </html>
