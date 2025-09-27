@@ -35,30 +35,33 @@ const DetailBook = async ({ params }: { params: { id: string } }) => {
 
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+    <div>
+      <div className="flex w-full">
         <Image
           src={book.thumbnail.url}
           alt="book image"
-          className="w-full h-80 object-cover object-center"
           width={700}
           height={700}
+          style={{ width: '50%' }} // 親 div に合わせる
         />
-        <div className="p-4">
-          <h2 className="text-2xl font-bold">{book.title}</h2>
-          <p>{isPurchased ? '購入済' : '未購入'}</p>
-          <div
-            className="text-gray-700 mt-2"
-            dangerouslySetInnerHTML={{ __html: book.content }}
-          />
+        <div className="p-[100px] bg-[rgba(0,_0,_0,_0.7)] w-1/2">
+          <h2 className="text-2xl font-bold text-[rgba(255,_255,_255,_0.7)] text-[40px] mb-[50px]">{book.title}</h2>
+          {/* <p>{isPurchased ? '購入済' : '未購入'}</p> */}
+          <div className="mb-[50px]">
+            <div
+              className="text-[rgba(255,_255,_255)] text-[16px] leading-[1.7]"
+              dangerouslySetInnerHTML={{ __html: book.content }}
+            />
+          </div>
           <CheckoutButton bookId={book.id} title={book.title} price={book.price} userId={user?.id} isPurchased={isPurchased} />
           <div className="flex justify-between items-center mt-2">
-            <span className="text-sm text-gray-500">公開日:{new Date(book.publishedAt).toLocaleDateString()}</span>
-            <span className="text-sm text-gray-500">最終更新:{new Date(book.updatedAt).toLocaleDateString()}</span>
+            <span className="text-sm text-[rgba(255,_255,_255,_0.7)]">公開日:{new Date(book.publishedAt).toLocaleDateString()}</span>
           </div>
         </div>
       </div>
-      <CommentCreate params={params} />
+      <div className="bg-[rgb(11,_23,_39,_0.9)] px-[100px] py-[50px]">
+        <CommentCreate params={params} user={user} />
+      </div>
     </div>
   );
 };
