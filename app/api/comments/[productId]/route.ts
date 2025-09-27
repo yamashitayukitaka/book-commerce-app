@@ -23,11 +23,11 @@ export const POST = async (req: Request, { params }: { params: { productId: stri
   try {
     await prisma.$connect();
     const body = await req.json();
-    const { content } = body;
+    const { content, userName } = body;
     const { productId } = params;
 
     const comment = await prisma.comment.create({
-      data: { content, productId },
+      data: { content, productId, userName },
     });
 
     return NextResponse.json({ message: "Success", comment }, { status: 201 });
