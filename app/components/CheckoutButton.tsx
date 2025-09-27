@@ -41,6 +41,7 @@ const CheckoutButton = ({ bookId, title, price, userId, isPurchased }: CheckoutB
 
   const handleClickControl = () => {
     if (!userId) {
+      alert('ログインしてください')
       return;
     }
     if (isPurchased) {
