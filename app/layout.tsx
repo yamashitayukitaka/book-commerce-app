@@ -12,14 +12,6 @@ import ToasterContext from "@/app/context/ToasterContext";
 
 
 const notSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: "400" });
-import { Red_Hat_Display } from 'next/font/google';
-
-const redHat = Red_Hat_Display({
-  subsets: ['latin'],
-  weight: ['800'],
-  display: 'swap',
-});
-
 
 export const metadata: Metadata = {
   title: "Book commerce",
@@ -37,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notSansJP.className} ${redHat.className}`}
+        className={`${notSansJP.className}`}
       >
         <AuthContext>
           <ToasterContext />
