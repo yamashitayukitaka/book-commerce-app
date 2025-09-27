@@ -19,6 +19,8 @@ interface CheckoutButtonProps {
 
 const CheckoutButton = ({ bookId, title, price, userId, isPurchased }: CheckoutButtonProps) => {
   const router = useRouter();
+  console.log(userId);
+
   const startCheckout = async () => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
@@ -39,7 +41,6 @@ const CheckoutButton = ({ bookId, title, price, userId, isPurchased }: CheckoutB
 
   const handleClickControl = () => {
     if (!userId) {
-      router.push('/login');
       return;
     }
     if (isPurchased) {
@@ -49,7 +50,9 @@ const CheckoutButton = ({ bookId, title, price, userId, isPurchased }: CheckoutB
     }
   };
 
-  return <button onClick={handleClickControl}> 購入する</button >;
+  return <button
+    className="text-[rgba(255,255,255,0.9)] px-[20px] py-[10px] border border-[rgba(255,255,255,0.7)] hover:opacity-70 mb-[15px]"
+    onClick={handleClickControl}> 購入する →</button >;
 };
 
 export default CheckoutButton;
