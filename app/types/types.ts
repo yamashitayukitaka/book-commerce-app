@@ -42,4 +42,11 @@ type Comment = {
   userName?: string | null;
   productId?: string;
 }
-export type { BookType, User, Purchase, Task, Comment };
+
+type ModalType = {
+  isOpen: boolean
+  onOpen: () => void
+  onClose: () => void
+}
+
+export type { BookType, User, Purchase, Task, Comment, ModalType };

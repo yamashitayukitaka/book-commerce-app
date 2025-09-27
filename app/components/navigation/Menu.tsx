@@ -1,0 +1,81 @@
+'use client'
+
+import React, { useCallback, useState } from 'react'
+import { signOut } from 'next-auth/react'
+import { User } from '@prisma/client'
+
+import useLoginModal from '@/app/hooks/useLoginModal'
+import useSignupModal from '@/app/hooks/useSignupModal'
+import MenuItem from '@/app/components/navigation/MenuItem'
+import Link from 'next/link'
+
+
+type MenuProps = {
+  currentUser: User | null
+}
+
+const Menu: React.FC<MenuProps> = ({ currentUser }) => {
+  const [isOpen, setIsOpen] = useState(true)
+  const loginModal = useLoginModal()
+  const signupModal = useSignupModal()
+  //zustandの関数を定数に代入(modalsフォルダーで定義)
+
+  const alertLogin = () => {
+    alert('ログインしてください')
+  }
+
+
+  return (
+
+
+    <div className='flex items-center gap-[20px]'>
+      <div className="cursor-pointer flex gap-[20px]">
+        {currentUser ? (
+
+          <>
+            <MenuItem
+              label="ログアウト"
+              onClick={() => {
+                signOut()
+                setIsOpen(false)
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <MenuItem
+              label="ログイン"
+              onClick={() => {
+                loginModal.onOpen()
+                // zustandの典型的な実行方法
+                setIsOpen(false)
+              }}
+            />
+            <MenuItem
+              label="新規登録"
+              onClick={() => {
+                signupModal.onOpen()
+                setIsOpen(false)
+              }}
+            />
+          </>
+        )}
+      </div>
+      <Link
+        className='cursor-pointer text-[#fff] hover:opacity-60'
+        href={currentUser ? "/profile" : "#"}
+        onClick={(e) => {
+          if (!currentUser) {
+            e.preventDefault();
+            alert("ログインが必要です");
+          }
+        }}
+      >
+        購入履歴
+      </Link>
+    </div>
+
+  )
+}
+
+export default Menu
