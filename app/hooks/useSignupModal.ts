@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { ModalType } from '@/app/types'
+import { ModalType } from '@/app/types/types'
 
 // サインアップ状態管理
 const useSignupModal = create<ModalType>((set) => ({
