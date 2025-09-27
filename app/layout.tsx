@@ -8,7 +8,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import Navigation from "./components/navigation/Navigation";
 import SignupModal from "./components/modals/SignupModal";
 import LoginModal from "./components/modals/LoginModal";
-import ToasterContext from "./context/ToasterContext";
+import ToasterContext from "@/app/context/ToasterContext";
 
 
 const notSansJP = Noto_Sans_JP({ subsets: ["latin"], weight: "400" });
