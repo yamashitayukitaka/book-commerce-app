@@ -70,7 +70,7 @@ const Modal: React.FC<ModalProps> = ({
       <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden bg-neutral-800/50">
         <div className="relative mx-auto h-full w-full md:h-auto md:max-w-screen-sm">
           <div className="translate h-full duration-75">
-            <div className="h-full bg-white shadow-lg md:rounded-lg">
+            <div className="h-full bg-white shadow-lg">
               {/* ヘッダー */}
               <div className="relative flex items-center justify-center border-b p-6">
                 {/* 閉じる */}

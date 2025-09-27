@@ -23,12 +23,12 @@ const Button: React.FC<ButtonProps> = ({ label, onClick, disabled, outline, del,
       disabled={disabled}
 
       onClick={onClick}
-      className={`relative w-full rounded-full border py-2 font-semibold hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-70 
+      className={`relative w-full border py-2 font-semibold hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-70 
       ${outline
           ? 'border-neutral-400 bg-white text-black'
           : del
             ? 'border-red-500 bg-red-500 text-white'
-            : 'border-sky-500 bg-sky-500 text-white'
+            : 'bg-[rgb(11,_23,_39)] text-white'
         }
       `}
     //これは 三項演算子（条件演算子）の応用的な使い方 の一つです。

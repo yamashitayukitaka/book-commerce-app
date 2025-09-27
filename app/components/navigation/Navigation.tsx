@@ -50,9 +50,9 @@ type NavigationProps = {
 const Navigation: React.FC<NavigationProps> = ({ currentUser }) => {
   return (
     <>
-      <header className="h-[100px] flex items-center px-[80px] py-0 bg-[rgb(11,_23,_39)]">
+      <header className="h-[100px] flex items-center px-[80px] py-0 bg-[rgb(11,_23,_39)] max-[768px]:px-[20px]">
         <div className="flex justify-between w-full">
-          <Link href="/" className={`${libreBodoni.className} text-[24px] text-[#fff]`}>
+          <Link href="/" className={`${libreBodoni.className} text-[24px] text-[#fff] max-[768px]:text-[16px]`}>
             multiplicity
           </Link>
 

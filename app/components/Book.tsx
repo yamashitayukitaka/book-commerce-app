@@ -99,8 +99,8 @@ const Book = ({ book, isPurchased }: BookProps) => {
       `}</style>
 
 
-      <div className="flex w-[calc((1400-30)/4*1px)]">
-        <a onClick={GoToProductDetail} className="cursor-pointer block group">
+      <div className="flex w-[calc((1339px-30px)/4)] max-[1400px]:w-[48%]">
+        <a onClick={GoToProductDetail} className="cursor-pointer block group w-full">
           <div className="[aspect-ratio:4/5] overflow-hidden">
             <Image
               priority
@@ -108,12 +108,12 @@ const Book = ({ book, isPurchased }: BookProps) => {
               alt={book.title}
               width={450}
               height={350}
-              className="transition-all duration-500 transform group-hover:scale-125"
+              className="transition-all duration-500 transform group-hover:scale-125 w-full"
             />
           </div>
-          <div className="px-4 py-4 bg-slate-100">
-            <h2 className="text-lg font-semibold">{book.title}</h2>
-            <p className="mt-2 text-md text-slate-700">値段：{book.price}円</p>
+          <div className="px-4 py-4 bg-slate-100 w-full">
+            <h2 className="text-[16px] max-[520px]:text-[14px]">{book.title}</h2>
+            <p className="mt-2 text-md text-slate-700">{book.price}円</p>
           </div>
         </a>
       </div>

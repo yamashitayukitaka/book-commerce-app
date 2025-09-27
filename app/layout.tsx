@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${notSansJP.className}`}
+        className={`${notSansJP.className} overflow-x-hidden`}
       >
         <AuthContext>
           <ToasterContext />

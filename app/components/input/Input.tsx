@@ -32,7 +32,7 @@ const Input = <T extends FieldValues>({
         {...register(id, { required })}
         placeholder=""
         type={type}
-        className={`w-full rounded-lg border-2 p-4 outline-none transition disabled:cursor-not-allowed disabled:opacity-70
+        className={`w-full border-2 p-4 outline-none transition disabled:cursor-not-allowed disabled:opacity-70
           ${errors[id]
             ? 'border-red-500 focus:border-red-500'
             : 'border-neutral-300 focus:border-sky-500'

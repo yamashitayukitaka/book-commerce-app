@@ -36,16 +36,16 @@ const DetailBook = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div>
-      <div className="flex w-full">
+      <div className="flex w-full max-[768px]:flex-col">
         <Image
           src={book.thumbnail.url}
           alt="book image"
           width={700}
           height={700}
-          style={{ width: '50%' }} // 親 div に合わせる
+          className="object-cover w-1/2 max-[768px]:w-full"
         />
-        <div className="p-[100px] bg-[rgba(0,_0,_0,_0.7)] w-1/2">
-          <h2 className="text-2xl font-bold text-[rgba(255,_255,_255,_0.7)] text-[40px] mb-[50px]">{book.title}</h2>
+        <div className="p-[100px] bg-[rgba(0,_0,_0,_0.7)] w-1/2 max-[768px]:p-[20px] max-[768px]:w-full">
+          <h2 className="text-2xl font-bold text-[rgba(255,_255,_255,_0.7)] text-[40px] mb-[50px] leading-[1.3] max-[768px]:text-[24px]">{book.title}</h2>
           {/* <p>{isPurchased ? '購入済' : '未購入'}</p> */}
           <div className="mb-[50px]">
             <div
@@ -59,7 +59,7 @@ const DetailBook = async ({ params }: { params: { id: string } }) => {
           </div>
         </div>
       </div>
-      <div className="bg-[rgb(11,_23,_39,_0.9)] px-[100px] py-[50px]">
+      <div className="bg-[rgb(11,_23,_39,_0.9)] px-[100px] py-[50px] max-[1400px]:px-[20px]">
         <CommentCreate params={params} user={user} />
       </div>
     </div>

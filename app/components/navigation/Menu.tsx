@@ -28,8 +28,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   return (
 
 
-    <div className='flex items-center gap-[20px]'>
-      <div className="cursor-pointer flex gap-[20px]">
+    <div className='flex items-center gap-[20px] max-md:gap-[8px]'>
+      <div className="cursor-pointer flex gap-[20px] max-md:gap-[8px]">
         {currentUser ? (
 
           <>
@@ -62,7 +62,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         )}
       </div>
       <Link
-        className='cursor-pointer text-[#fff] hover:opacity-60'
+        className='cursor-pointer text-[#fff] hover:opacity-60 max-[768px]:text-[14px]'
         href={currentUser ? "/profile" : "#"}
         onClick={(e) => {
           if (!currentUser) {

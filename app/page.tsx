@@ -58,7 +58,7 @@ export default async function Home() {
   return (
     <>
       <main>
-        <div className="relative h-screen overflow-hidden mb-[48px]">
+        <div className="relative overflow-hidden mb-[48px]">
           <Image
             src="/hero/img01.jpg"
             alt="カバー画像"
@@ -67,14 +67,16 @@ export default async function Home() {
             sizes="100vw"         // 親要素にフィット
             className="object-cover"
           />
-          <p className={`${redHat.className} text-xl text-[#fff] absolute top-[30%] left-[50px] font-bold text-[64px] tracking-[3.2px]`}>
+          <p className={`${redHat.className} text-[#fff] absolute top-[30%] px-20 py-0 font-bold text-[64px] tracking-[3.2px]
+    max-[768px]:text-[32px] max-[768px]:top-[10%]
+    max-[520px]:text-[24px] max-[520px]:top-[5%] max-[520px]:px-[20px]`}>
             THE AREA OF DIVERSITY IS COMING.
           </p>
         </div>
-        <h2 className={`${redHat.className} text-center tracking-[2px] text-[40px] mb-[40px]`}>
+        <h2 className={`${redHat.className} text-center tracking-[2px] text-[40px] mb-[40px] [@media(max-width:768px)]:text-[24px]`}>
           COLLECTION
         </h2>
-        <div className="flex flex-wrap w-[1400px] m-auto gap-[10px] mb-[100px]">
+        <div className="flex flex-wrap w-[1400px] m-auto gap-x-[10px] gap-y-[10px] mb-[100px] px-[20px] max-[1400px]:w-full max-[1400px]:gap-x-[4%]">
           {contents.map((book: BookType) => (
             <Book
               key={book.id}

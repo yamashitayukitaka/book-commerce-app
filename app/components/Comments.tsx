@@ -156,7 +156,7 @@ const CommentCreate = ({ params, user }: CommentProps) => {
                   投稿日: {new Date(comment.createdAt).toLocaleDateString()}
                 </p>
               </div>
-              {!(editingId === comment.id) && <p className=" text-slate-200 w-3/5 mb-[14px]">{comment.content}</p>}
+              {!(editingId === comment.id) && <p className=" text-slate-200 w-3/5 mb-[14px] max-[768px]:w-full">{comment.content}</p>}
               {userName && userName === comment.userName && (
                 <>
                   {editingId === comment.id ? (
@@ -207,9 +207,6 @@ const CommentCreate = ({ params, user }: CommentProps) => {
                 </>
               )}
             </div>
-
-
-
           </div>
         ))}
       </div>
@@ -218,15 +215,15 @@ const CommentCreate = ({ params, user }: CommentProps) => {
       <div className="w-full">
         <div className="flex flex-col justify-center items-center m-auto">
           <p className=" text-slate-200 p-3 w-full text-left">コメントする</p>
-          <form onSubmit={handleSubmit} className='w-full flex gap-[50px] items-center'>
+          <form onSubmit={handleSubmit} className='w-full flex gap-[50px] items-center max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-[10px]'>
 
             <textarea
               ref={contentRef}
               placeholder="コメントを入力"
-              className="px-4 py-2 w-3/5 my-2 bg-[rgb(11,_23,_39,_0.9)]  text-slate-200"
+              className="px-4 py-2 w-3/5 my-2 bg-[rgb(11,_23,_39,_0.9)]  text-slate-200 max-[768px]:w-full"
               onChange={onChangeAlert}
             ></textarea>
-            <button className=" text-slate-200 px-[20px] h-[46px] border border-[rgba(255,255,255,0.7)] hover:opacity-70">
+            <button className=" text-slate-200 px-[20px] h-[46px] border border-[rgba(255,255,255,0.7)] hover:opacity-70 max-[768px]:margin-right: auto;">
               投稿する →
             </button>
           </form>
