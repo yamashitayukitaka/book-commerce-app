@@ -28,5 +28,8 @@ https://book-commerce-app-neon-two.vercel.app/
 - Next.js API Routes
 - Prisma (ORM)
 ## 今後の展開
-- Micro CMS Stripeを使って本格的なECサイト制作
-- ウーバーイーツ型アプリ制作
+- 商品をジャンルごとにカテゴリー分けしてサイドバーから各ページへ遷移可能に
+- ページネーション実装
+- 検索機能実装
+- いいね機能実装
+- 個数指定しての購入決済を可能に
