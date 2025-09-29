@@ -1,58 +1,11 @@
 "use client";
 
 import { getProviders, signIn } from "next-auth/react";
-
-
-// eslint-disable-next-line @next/next/no-async-client-component
-
-// ---------------------------------------------------------------------
 async function Login() {
-
-
   const providers = await getProviders().then((res) => {
-    // getProviders関数は、api/auth/[...nextauth]/route.tsで定義された
-    // NextAuth設定(nextAuthOptions)を参照し、登録されている認証プロバイダーの情報を取得する。
     console.log(res);
     return res;
   });
-
-
-  // getProviders() を呼び出す → Promise が返る
-  // .then((res) => { ... }) で Promise が解決されたときの値 res を受け取る
-  // return res; により、その値が providers に格納される
-  // つまり、providers には getProviders() が返す認証プロバイダーのオブジェクトが入ります。
-
-  // このresはgetProviders関数内のPromiseの処理でresolveの引数に渡さされた値
-  // getProviders() は Promise を返す非同期関数。
-  // その Promise の resolve に渡された値 が .then((res) => … ) の res に入ってきます。
-  // つまり res は getProviders の内部で用意されている「プロバイダー一覧オブジェクト」。
-
-
-
-  // NextAuth の公式だと getProviders() が返す res の型はだいたいこんなイメージです：
-
-  // {
-  //   google: {
-  //     id: "google",
-  //     name: "Google",
-  //     type: "oauth",
-  //     signinUrl: "...",
-  //     callbackUrl: "..."
-  //   },
-  //   github: {
-  //     id: "github",
-  //     name: "GitHub",
-  //     type: "oauth",
-  //     signinUrl: "...",
-  //     callbackUrl: "..."
-  //   },
-  //   // ...他に設定しているもの
-  // }
-
-
-  // ----------------------------------------------------------------------
-
-
   return (
     <div className="flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -64,17 +17,10 @@ async function Login() {
         <div className="mt-8 space-y-6">
           {providers &&
             Object.values(providers).map((provider) => {
-              // Object.values()でひとつの関数とみる
-              // Object.values()は引数にオブジェクトを取り、
-              // そのオブジェクトの値だけを配列にして返すメソッド。
-              // mapは配列の各要素に対して処理を行うメソッドなので、
-              // Object.values()でオブジェクトを配列に変換する必要がある。
               return (
                 <div key={provider.id} className="text-center">
                   <button
                     onClick={() => signIn(provider.id, { callbackUrl: '/' })}
-                    // nextAuthで準備されているsignIn関数第一引数にprovider.id(どのproviderを使用しているか)を渡す第二引数に
-                    // ログイン成功後に どのURLへリダイレクトするか を指定
                     className="bg-gray-900 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded flex items-center justify-center w-full"
                   >
                     <svg

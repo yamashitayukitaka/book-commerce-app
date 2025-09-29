@@ -8,13 +8,10 @@ const postComment = async (content: string | undefined, productId: string | unde
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/comments/${productId}`, {
     method: "POST",
-    // method: "POST",の記述で同一のエンドポイント上にあるconst POSTと const GETのどちら側の関数にアクセスするか判別している
-    // fetch() の method を省略した場合は GET リクエストとして送信されるので、
-    // Next.js のエンドポイント内に定義された const GET 関数にアクセスして実行されます。
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ content, userName }), // 送信するデータをJSON形式に変換してリクエストボディに含める
+    body: JSON.stringify({ content, userName }),
   });
   return res.json();
 }
@@ -95,8 +92,7 @@ const CommentCreate = ({ params, user }: CommentProps) => {
     const inputText = editedTexts[commentId];
     if (!inputText) return;
 
-    const updated = await editComment(inputText, params.id, commentId); // ←ここで受け取る
-
+    const updated = await editComment(inputText, params.id, commentId);
     toast.success("編集が完了しました！");
 
     // コメント配列を順番そのままに更新
@@ -113,7 +109,6 @@ const CommentCreate = ({ params, user }: CommentProps) => {
   // 投稿用
   const contentRef = useRef<HTMLTextAreaElement | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
-    // これは現在NextAuthでログインしている人のユーザー情報（セッション情報）を取得している
     if (userId) {
       e.preventDefault();
       // toast.loading('投稿中です...')
@@ -163,20 +158,6 @@ const CommentCreate = ({ params, user }: CommentProps) => {
                     <>
                       <textarea
                         autoFocus
-                        // value={editedTexts[comment.id] ?? comment.content}
-                        // const [editedTexts, setEditedTexts] = useState<{ [key: string]: string }>({});
-                        // となっており、editedTextsはオブジェクト型である。
-                        // 構造以下
-                        // {
-                        //   "1": "テキストa",
-                        //   "2": "テキストb"
-                        // }
-                        // editedTexts[comment.id]はcomment.idが動的であるので、ブラケット記法を使わなければならない。
-                        // ??（Nullish Coalescing Operator）の意味は
-                        // 左側が null または undefined の場合のみ、右側を使う
-                        // 左側が ""（空文字）、0、false のような falsy 値でも 左側が優先される
-                        // オプショナルチェイニング（?.）（?が１個）とは別物
-
                         onChange={(e) => handleChange(comment.id, e.target.value)}
                         className="px-4 py-2 w-3/5 my-2 bg-[rgb(11,_23,_39,_0.9)]  text-slate-200 block"
 
@@ -216,7 +197,6 @@ const CommentCreate = ({ params, user }: CommentProps) => {
         <div className="flex flex-col justify-center items-center m-auto">
           <p className=" text-slate-200 p-3 w-full text-left">コメントする</p>
           <form onSubmit={handleSubmit} className='w-full flex gap-[50px] items-center max-[768px]:flex-col max-[768px]:items-start max-[768px]:gap-[10px]'>
-
             <textarea
               ref={contentRef}
               placeholder="コメントを入力"

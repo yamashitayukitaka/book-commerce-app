@@ -1,11 +1,4 @@
-"use client"; // クライアントコンポーネントにする
-// 親がサーバーコンポーネント内であってもuseRouter（useRouterはサーバーコンポーネントでは使えない）を使うために
-// CheckoutButton自体をクライアントコンポーネントにする
-// 子コンポーネントをクライアントコンポーネントにすることで、親がサーバーコンポーネントであっても
-// 子コンポーネント内でuseRouterを使用できるようになる
-
-
-
+"use client";
 import { useRouter } from "next/navigation";
 import React from "react";
 

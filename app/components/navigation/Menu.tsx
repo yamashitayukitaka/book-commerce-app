@@ -18,8 +18,6 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(true)
   const loginModal = useLoginModal()
   const signupModal = useSignupModal()
-  //zustandの関数を定数に代入(modalsフォルダーで定義)
-
   const alertLogin = () => {
     alert('ログインしてください')
   }

@@ -36,16 +36,8 @@ export default async function RootLayout({
           <SignupModal />
           <LoginModal />
           <Navigation currentUser={currentUser} />
-
-          {/* <SessionProvider> */}
-
-          {/* useSession ()を使う為には、useSession() を使うコンポーネントが <SessionProvider> で囲まれていないといけない */}
-          {/* {children}は各フォルダ名/page.tsx のpage,tsxが入るので各ページでuseSession()を使える */}
-          {/* SessionProviderはクライアントコンポーネントでしか使えないので、注意が必要 */}
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </AuthContext>
-        {/* </SessionProvider> */}
-
       </body>
     </html>
   );

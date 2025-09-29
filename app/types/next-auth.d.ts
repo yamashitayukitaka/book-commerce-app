@@ -20,4 +20,4 @@ declare module "next-auth" {
   }
 }
 
-export { }; // ← これを必ず追加！
+export { }; 

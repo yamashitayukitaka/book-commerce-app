@@ -11,21 +11,8 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  // .env.development.local や .env.local は Next.js やフロント用の環境変数 としては有効ですが、Prisma CLI はそれを自動では読まないので、
-  // PRISMA_DATABASE_URLは .env ファイルに記述すること。
 }
 
-// datasource db = 「Prisma が使うデータベースの設定をまとめたもの」
-// datasource db {
-//   provider = "postgresql"          // データベースの種類。ここでは PostgreSQL
-//   url      = env("PRISMA_DATABASE_URL") // 接続先URL（環境変数で管理）
-// }
-
-// ------------------------------------------------------------------------------------
-// ✅
-// Account / Session / User / VerificationToken
-// → 認証・ログイン・セッション管理に関わるモデル。
-// → ユーザー情報やログイン状態の管理が目的。
 model Account {
   id                String  @id @default(cuid())
   userId            String
@@ -66,8 +53,6 @@ model VerificationToken {
   @@unique([identifier, token])
 }
 
-// ------------------------------------------------------------------------------------
-// ユーザーの購入履歴に関わるモデル。
 model Purchase {
   id        String   @id @default(cuid())
   userId    String

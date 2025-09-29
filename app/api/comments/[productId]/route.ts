@@ -6,11 +6,9 @@ export const GET = async (req: Request, { params }: { params: { productId: strin
   try {
     await prisma.$connect();
     const { productId } = params;
-    console.log("productId:", productId); // productIdが正しく取得できているか確認するためのログ
+    console.log("productId:", productId);
     const post = await prisma.comment.findMany({ where: { productId: productId } });
     return NextResponse.json({ message: "Sucsess", post }, { status: 200 })
-    // 第１引数のオブジェクトになかにGETできたデータ(post)を含め、フロントエンドに渡す。
-    // App RouterではNextResponse.json()を使う。
   } catch (err) {
     return NextResponse.json({ message: "Error", err }, { status: 500 })
 
@@ -32,7 +30,7 @@ export const POST = async (req: Request, { params }: { params: { productId: stri
 
     return NextResponse.json({ message: "Success", comment }, { status: 201 });
   } catch (err) {
-    console.error("Prisma Error:", err); // <- まずこれでエラー内容を確認
+    console.error("Prisma Error:", err);
     return NextResponse.json({ message: "Error" }, { status: 500 });
   } finally {
     await prisma.$disconnect();

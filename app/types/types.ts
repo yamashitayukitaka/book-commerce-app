@@ -38,7 +38,7 @@ type Comment = {
   id: string;
   content: string;
   createdAt: Date;
-  userId?: string;          // ? はオプショナル
+  userId?: string;
   userName?: string | null;
   productId?: string;
 }

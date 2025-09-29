@@ -1,5 +1,4 @@
 'use client';
-// useSearchParams()を使用するときはクライアントコンポーネントでなければならない
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -11,12 +10,7 @@ const PurchaseSuccess = () => {
   console.log(sessionId);
 
   useEffect(() => {
-    // useEffectで発火タイミングを制御
-    // --------------------------------------------------------
-    // クライアントコンポーネントではコンポーネントにasyncをつけることはできない
-    // ので以下で代用
     const fetchData = async () => {
-      // sessionId がない場合は処理しない
       if (sessionId) {
         try {
           const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout/success`, {
@@ -26,12 +20,8 @@ const PurchaseSuccess = () => {
             },
             body: JSON.stringify({ sessionId }),
           });
-
-          // console.log(await res.json());
           const data = await res.json();
           setBookUrl(data.purchase.bookId);
-
-          // 購入完了後、他のページのキャッシュをクリアするため少し待つ
           setTimeout(() => {
             // ページ遷移時にキャッシュを強制的にリフレッシュ
             if (typeof window !== 'undefined') {
@@ -44,9 +34,7 @@ const PurchaseSuccess = () => {
       }
     }
     fetchData();
-    // async関数は定義しただけでは実行されないので、fetchData()を呼び出す必要がある
-    // ----------------------------------------------
-  }, [sessionId]); // ← useEffect の依存配列はここで閉じる
+  }, [sessionId]);
 
 
   return (

@@ -114,11 +114,6 @@ const SignupModal = () => {
   const footerContent = (
     <div className="mt-3 flex flex-col gap-4">
       <hr />
-      {/* Googleログイン */}
-      {/* <Button outline label="Googleでログイン" icon={FcGoogle} onClick={() => signIn('google')} /> */}
-      {/* signIn() は NextAuth.js のクライアント関数で、ログイン処理を開始するために使用。
-      第一引数には、authOptions.providers で定義したプロバイダーID（例: "google", "github" など）を指定する。 */}
-      {/* ログインリンク */}
       <div className="mt-4 text-center">
         <div onClick={onToggle} className="cursor-pointer text-sm text-neutral-500 hover:underline">
           ログインする

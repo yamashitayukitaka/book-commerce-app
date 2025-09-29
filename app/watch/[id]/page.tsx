@@ -1,10 +1,5 @@
-// urlがhttp://localhost:3000/book/oz6t9zj9e5fの場合
-// この場合app/book/[id]/page.tsxの[id]の部分にoz6t9zj9e5fが自動的に入り、
-// idごとに分けられたpage.tsxが生成される。
-// 注意点としてpage.tsx内でidを扱う為にはparamsでidを受け取る必要がある
-
 import { getDetailBooks } from "@/app/lib/microcms/client";
-import CheckoutButton from "@/app/components/CheckoutButton"; // クライアントコンポーネント
+import CheckoutButton from "@/app/components/CheckoutButton";
 import Image from "next/image";
 import React from "react";
 import { getServerSession } from "next-auth";
@@ -16,7 +11,6 @@ import CommentCreate from "@/app/components/Comments";
 
 const DetailBook = async ({ params }: { params: { id: string } }) => {
   const session = await getServerSession(nextAuthOptions)
-  // これは現在NextAuthでログインしている人のユーザー情報（セッション情報）を取得している
   const user = session?.user as User;
   const book = await getDetailBooks(params.id)
 

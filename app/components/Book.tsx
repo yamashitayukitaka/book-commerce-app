@@ -5,32 +5,22 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { User } from "@/app/types/types";
-// Next.js 13.4 以降は next/navigation を使う
-// import { useRouter } from "next/router";(これはPages router)
-
-
 
 type BookProps = {
   book: BookType;
   isPurchased: boolean;
 }
 
-// eslint-disable-next-line react/display-name
+
 const Book = ({ book, isPurchased }: BookProps) => {
   const { data: session } = useSession();
-  // useSessionはnextAuthの関数で セッション情報を返す関数
-
-
   const user = session?.user as User;
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   console.log(user?.id);
   console.log(book.id);
 
-
-
   const startCheckout = async () => {
-    // ------------------------------------------------
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
         method: "POST",
@@ -42,9 +32,6 @@ const Book = ({ book, isPurchased }: BookProps) => {
           bookId: book.id,
         }),
       });
-      // fetch() の返り値は Response オブジェクト（Promise<Response>）。
-      // その Response の中身には、サーバー（= Next.js のルートハンドラー GET / POST など）が return したもの が含まれている。
-      // ------------------------------------------------
       const responseData = await response.json();
       if (responseData) {
         router.push(responseData.checkout_url);
@@ -61,14 +48,6 @@ const Book = ({ book, isPurchased }: BookProps) => {
   const handleCancel = () => {
     setShowModal(false);
   }
-
-  // const handlePurchaseClick = () => {
-  //   if (isPurchased) {
-  //     alert('その商品は購入済みです');
-  //   } else {
-  //     setShowModal(true);
-  //   }
-  // }
 
   const handlePurchaseConfirm = () => {
     if (!user) {
