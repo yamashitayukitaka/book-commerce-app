@@ -2,6 +2,9 @@
 <ins> </ins>
 ## アプリ URL
 https://book-commerce-app-neon-two.vercel.app/
+## デモアカウント
+メールアドレス:multiplicity@example.com
+パスワード:test6666
 ## 作成期間
 ・2025年8月29日～9月26日
 ## 概要
