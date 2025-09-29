@@ -12,7 +12,7 @@ const PurchaseDetailBook = ({ purchaseDetailBook }: purchaseDetailBookProps) => 
 
   return (
     <Link
-      href={`/book/${purchaseDetailBook.id}`}
+      href={`/watch/${purchaseDetailBook.id}`}
       className="cursor-pointer shadow-2xl duration-300 hover:translate-y-1 hover:shadow-none"
     >
       <Image

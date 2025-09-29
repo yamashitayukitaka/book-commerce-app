@@ -55,7 +55,7 @@ const Book = ({ book, isPurchased }: BookProps) => {
   };
 
   const GoToProductDetail = () => {
-    router.push(`/book/${book.id}`);
+    router.push(`/watch/${book.id}`);
   }
 
   const handleCancel = () => {

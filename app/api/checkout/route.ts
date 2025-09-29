@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       // さまざまな取引タイプを処理するには、mode パラメーターを調整します。
       // 1 回限りの支払いの場合は payment を使用します。サブスクリプションで
       // 継続支払いを開始するには、mode を subscription に切り替えます。
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/book/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/watch/checkout-success?session_id={CHECKOUT_SESSION_ID}`,
       // session_id={CHECKOUT_SESSION_ID}はStripe側が自動的にチェックアウト決済のIDをURLに追加してくれる
       //決済が成功した場合のリダイレクト先（自動的に移動する先）
       cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
