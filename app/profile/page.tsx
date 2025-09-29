@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getServerSession } from "next-auth";
 import { User, Purchase, BookType } from "@/app/types/types";
 import { nextAuthOptions } from "@/app/lib/next-auth/options";
@@ -21,8 +20,6 @@ export default async function ProfilePage() {
     });
     const purchasesData = await response.json();
     console.log(purchasesData);
-
-    // -----------------------------------------------------
     purchaseDetailBooks = await Promise.all(
       purchasesData.map((purchase: Purchase) => getDetailBooks(purchase.bookId))
     );

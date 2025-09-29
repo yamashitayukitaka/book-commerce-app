@@ -7,7 +7,6 @@ export const client = createClient({
 });
 export const getAllBook = async () => {
   const allbooks = await client.getList<BookType>({
-    // getListはmicrocms独自のcrud関数
     endpoint: 'bookcommerce',
   });
   return allbooks;

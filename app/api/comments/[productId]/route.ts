@@ -6,7 +6,6 @@ export const GET = async (req: Request, { params }: { params: { productId: strin
   try {
     await prisma.$connect();
     const { productId } = params;
-    console.log("productId:", productId);
     const post = await prisma.comment.findMany({ where: { productId: productId } });
     return NextResponse.json({ message: "Sucsess", post }, { status: 200 })
   } catch (err) {

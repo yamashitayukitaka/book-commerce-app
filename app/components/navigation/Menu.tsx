@@ -45,7 +45,6 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
               label="ログイン"
               onClick={() => {
                 loginModal.onOpen()
-                // zustandの典型的な実行方法
                 setIsOpen(false)
               }}
             />
