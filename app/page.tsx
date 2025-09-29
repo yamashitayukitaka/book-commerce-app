@@ -51,8 +51,6 @@ export default async function Home() {
             <Book
               key={book.id}
               book={book}
-              isPurchased={purchasedBookIds.includes(book.id)
-              }
             />
           ))}
         </div>
