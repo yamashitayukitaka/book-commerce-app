@@ -34,7 +34,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             <MenuItem
               label="ログアウト"
               onClick={() => {
-                signOut()
+                signOut({ callbackUrl: "/" })
                 setIsOpen(false)
               }}
             />
